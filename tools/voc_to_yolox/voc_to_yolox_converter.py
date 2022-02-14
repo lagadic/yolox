@@ -1,5 +1,6 @@
 from absl import app, flags
 import random
+import os.path as path
 
 from utils.voc import parse_voc_annotation
 
@@ -15,12 +16,13 @@ flags.DEFINE_string('train_output', 'dataset_train.txt',
                     'Train data')
 flags.DEFINE_string('valid_output', 'dataset_valid.txt',
                     'Validation data')
+flags.DEFINE_string('class_names', 'class.names', 'Class names')
 FLAGS = flags.FLAGS
 
 
 def main(_argv):
     train_ints, train_labels = parse_voc_annotation(
-        FLAGS.annotations, FLAGS.images, FLAGS.cache)
+        path.abspath(FLAGS.annotations), path.abspath(FLAGS.images), FLAGS.cache)
     labels = list(train_labels.keys())
 
     lines = []
@@ -44,6 +46,10 @@ def main(_argv):
 
     with open(FLAGS.valid_output, "w") as file:
         file.writelines(valid_lines)
+
+    with open(FLAGS.class_names, "w") as file:
+        for label in labels:
+            file.write(label + "\n")
 
 
 if __name__ == "__main__":
