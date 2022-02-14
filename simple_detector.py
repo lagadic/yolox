@@ -38,12 +38,17 @@ flags.DEFINE_string(
 flags.DEFINE_integer('image_size', '416', 'CNN input image size')
 flags.DEFINE_string('image_folder', '/data/Images/',
                     'Path to the image folder')
-flags.DEFINE_multi_string('names', ['class1', 'class2'], 'class names')
+flags.DEFINE_string('class_names', 'class.names', 'Class names')
 FLAGS = flags.FLAGS
 
 
 def main(_argv):
     model = Inference(FLAGS.model)
+
+    names = []
+    with open(FLAGS.class_names) as file:
+        for line in file.readlines():
+            names.append(line.rstrip('\n'))
 
     shader = Shader(1)
 
@@ -55,7 +60,7 @@ def main(_argv):
 
         for bbox in bboxes:
             if bbox.score > 0.45:
-                image = draw_simple_bboxes(image, [bbox], FLAGS.names, shader)
+                image = draw_simple_bboxes(image, [bbox], names, shader)
 
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         cv2.imshow('Image', image)
