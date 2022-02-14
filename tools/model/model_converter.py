@@ -62,7 +62,7 @@ def main(_argv):
         model.summary()
 
     if FLAGS.output_format == 'weight':
-        model.save_weights(f"{FLAGS.model_path}.h5")
+        model.save_weights(f"{os.path.dirname(FLAGS.model_path)}.h5")
 
     elif FLAGS.output_format == 'frozen_graph':
         save_frozen_graph(model, FLAGS.model_path)
@@ -70,7 +70,7 @@ def main(_argv):
     elif FLAGS.output_format == 'onnx':
         onnx_model_proto, _ = tf2onnx.convert.from_keras(
             model, opset=FLAGS.opset)
-        with open(f"{FLAGS.model_path}.onnx", "wb") as f:
+        with open(f"{os.path.dirname(FLAGS.model_path)}.onnx", "wb") as f:
             f.write(onnx_model_proto.SerializeToString())
 
     else:
