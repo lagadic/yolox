@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 from absl import app, flags
 
+import tensorflow as tf
 from core.utils import decode_cfg, load_weights
-from core.callbacks import VOCEvalCheckpoint
 
 flags.DEFINE_string('config', '', 'path to config file')
+flags.DEFINE_string('eval', 'COCO', 'VOC or COCO')
 FLAGS = flags.FLAGS
 
 
@@ -38,10 +39,17 @@ def main(_argv):
     init_weight = cfg["test"]["init_weight_path"]
     load_weights(model, init_weight)
 
-    eval_callback = VOCEvalCheckpoint(save_path=None,
-                                      eval_model=eval_model,
-                                      model_cfg=cfg,
-                                      verbose=1)
+    if FLAGS.eval == 'VOC':
+        from core.callbacks import VOCEvalCheckpoint as EvalCheckpoint
+    elif FLAGS.eval == 'COCO':
+        from core.callbacks import COCOEvalCheckpoint as EvalCheckpoint
+    else:
+        raise NotImplementedError()
+
+    eval_callback = EvalCheckpoint(save_path=None,
+                                   eval_model=eval_model,
+                                   model_cfg=cfg,
+                                   verbose=1)
     eval_callback.on_epoch_end(0)
 
 
