@@ -120,7 +120,7 @@ def _draw_bboxes_absolute(img, bboxes, scores, classes, names, shader):
     return img
 
 
-def draw_bboxes(img, boxes, names, shader):
+def draw_simple_bboxes(img, boxes, names, shader):
     """
     BBoxes is absolute Format
     :param img: BGR, uint8

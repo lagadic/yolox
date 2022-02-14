@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import tensorflow as tf
 
 from absl import app, flags
 from core.utils import decode_cfg, load_weights
@@ -30,14 +32,19 @@ def main(_argv):
     model_type = cfg['yolo']['type']
     if model_type == 'yolov3':
         from core.model.one_stage.yolov3 import YOLOv3 as Model
+
     elif model_type == 'yolov3_tiny':
         from core.model.one_stage.yolov3 import YOLOv3_Tiny as Model
+
     elif model_type == 'yolov4':
         from core.model.one_stage.yolov4 import YOLOv4 as Model
+
     elif model_type == 'yolov4_tiny':
         from core.model.one_stage.yolov4 import YOLOv4_Tiny as Model
+
     elif model_type == 'yolox':
         from core.model.one_stage.custom import YOLOX as Model
+
     else:
         raise NotImplementedError()
 
@@ -59,7 +66,8 @@ def main(_argv):
     def inference(image):
 
         h, w = image.shape[:2]
-        image = preprocess_image(image, (image_size, image_size)).astype(np.float32)
+        image = preprocess_image(
+            image, (image_size, image_size)).astype(np.float32)
         images = np.expand_dims(image, axis=0)
 
         tic = time.time()
@@ -85,7 +93,8 @@ def main(_argv):
         while True:
 
             ret, image = media.read()
-            if not ret: break
+            if not ret:
+                break
 
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             ms, bboxes, scores, classes = inference(image)

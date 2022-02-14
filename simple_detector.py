@@ -5,7 +5,7 @@ import os
 from absl import app, flags
 
 from tensorflow.keras.models import load_model
-from core.image import draw_bboxes, preprocess_image, postprocess_bboxes, Shader, read_image
+from core.image import draw_simple_bboxes, preprocess_image, postprocess_bboxes, Shader, read_image
 
 
 class Inference:
@@ -55,7 +55,7 @@ def main(_argv):
 
         for bbox in bboxes:
             if bbox.score > 0.45:
-                image = draw_bboxes(image, [bbox], FLAGS.names, shader)
+                image = draw_simple_bboxes(image, [bbox], FLAGS.names, shader)
 
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         cv2.imshow('Image', image)
