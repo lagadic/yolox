@@ -20,7 +20,7 @@ Official weight files can be downloaded from https://github.com/AlexeyAB/darknet
 
 ### 1.1 Data Annotations
 
-The data can be annotated with (labelImg)[https://pypi.org/project/labelImg/].
+The data can be annotated with [labelImg](https://pypi.org/project/labelImg/).
 
 <video src="https://user-images.githubusercontent.com/83463058/154074675-7627a644-f630-4042-b16e-f47f5166ca14.mp4"></video>
 
