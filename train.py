@@ -7,16 +7,24 @@ from tensorflow.keras import optimizers
 
 from core.utils import decode_cfg, load_weights
 from core.dataset import Dataset
-from core.callbacks import COCOEvalCheckpoint, CosineAnnealingScheduler, WarmUpScheduler
+from core.callbacks import CosineAnnealingScheduler, WarmUpScheduler
 from core.utils.optimizers import Accumulative
 
 flags.DEFINE_string('config', '', 'path to config file')
+flags.DEFINE_string('eval', 'COCO', 'Callback used to evaluate: VOC or COCO')
 FLAGS = flags.FLAGS
 
 
 def main(_argv):
     print('Config File From:', FLAGS.config)
     cfg = decode_cfg(FLAGS.config)
+
+    if FLAGS.eval == 'VOC':
+        from core.callbacks import VOCEvalCheckpoint as EvalCheckpoint
+    elif FLAGS.eval == 'COCO':
+        from core.callbacks import COCOEvalCheckpoint as EvalCheckpoint
+    else:
+        raise NotImplementedError()
 
     model_type = cfg['yolo']['type']
     if model_type == 'yolov3':
@@ -83,11 +91,11 @@ def main(_argv):
     warmup_callback = [WarmUpScheduler(
         learning_rate=1e-3, warmup_step=1 * epoch_steps, verbose=1)]
 
-    eval_callback = [COCOEvalCheckpoint(save_path=os.path.join(ckpt_path, "mAP-{mAP:.4f}"),
-                                        eval_model=eval_model,
-                                        model_cfg=cfg,
-                                        only_save_weight=False,
-                                        verbose=1)
+    eval_callback = [EvalCheckpoint(save_path=os.path.join(ckpt_path, "mAP-{mAP:.4f}"),
+                                    eval_model=eval_model,
+                                    model_cfg=cfg,
+                                    only_save_weight=False,
+                                    verbose=1)
                      ]
     lr_callback = [CosineAnnealingScheduler(learning_rate=1e-3,
                                             eta_min=1e-6,
