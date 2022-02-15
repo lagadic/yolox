@@ -47,6 +47,7 @@ class VOCEvalCheckpoint(tf.keras.callbacks.Callback):
                     self.eval_model.save_weights(save_path)
                 else:
                     self.eval_model.save(save_path)
+                    self.eval_model.save_weights(save_path+".h5")
         else:
             if self.verbose > 0:
                 print("mAP not improved from {:.2%}".format(self._best_mAP))
