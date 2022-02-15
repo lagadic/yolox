@@ -10,6 +10,17 @@ YOLOv3, YOLOv3-tiny, YOLOv4, YOLOv4-tiny
 
 ---
 
+# Docker
+
+The [Dockerfile](./docker_images/Dockerfile) embeds every requirement of this project.
+
+The following parameters have to be used at docker image run:
+- `--env=DISPLAY`: Exports DISPLAY env variable for X server
+- `--env=QT_X11_NO_MITSHM=1`: Prevents QT-based applications from using X’s shared memory, which Docker isolation blocks.
+- `--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw`: Mounts the X11 socket
+
+---
+
 ## 0. Please Read Source Code for More Details
 
 Official weight files can be downloaded from https://github.com/AlexeyAB/darknet/releases.
