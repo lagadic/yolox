@@ -22,7 +22,7 @@ Official weight files can be downloaded from https://github.com/AlexeyAB/darknet
 
 The data can be annotated with (labelImg)[https://pypi.org/project/labelImg/].
 
-![](misc/labelImg.mp4)
+<video src="https://user-images.githubusercontent.com/83463058/154074675-7627a644-f630-4042-b16e-f47f5166ca14.mp4"></video>
 
 ### 1.2 Data File
 
@@ -36,7 +36,7 @@ path/to/image2 x1,y1,x2,y2,label
 
 Firstly, the labelImg annotated data have to be converted using:
 
-![](misc/labelImg_to_yolox.mp4)
+<video src="https://user-images.githubusercontent.com/83463058/154074671-5d5a5603-1b09-4f1c-b90f-27635c4a5e85.mp4"></video>
 
 ```shell
 python3 tools/voc_to_yolox/voc_to_yolox_converter.py
@@ -105,7 +105,8 @@ test:
 python3 simple_detector.py --image_folder=example/hole_detector/data/Images/ --model=example/hole_detector/models/tiny_yolox --class_names=example/hole_detector/data/hole.names
 ```
 
-![](misc/simple_detector.mp4)
+<video src="https://user-images.githubusercontent.com/83463058/154074661-95a50a32-f1c3-4f02-bf1e-80fce3858618.mp4
+"></video>
 
 #### A Script for Video, Device or Image
 
