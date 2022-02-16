@@ -12,13 +12,25 @@ YOLOv3, YOLOv3-tiny, YOLOv4, YOLOv4-tiny
 
 # Docker
 
-The [Dockerfile](./docker_images/Dockerfile) embeds every requirement of this project.
+The [Dockerfiles](./docker_images/) embed every requirement for this project.
 
+## GPU dedicated Dockerfile
+The [GPU dedicated Dockerfile](./docker_images/gpu/Dockerfile) relies on a [`BASE_IMAGE`](./docker_images/gpu/Dockerfile#L1) (default: `nvidia/cuda:11.2.2-cudnn8-runtime-ubuntu20.04`) which depends on the NVIDIA GPUs and the CUDA driver which is installed on the Host OS.
+
+**For further details**, please refer to [Installing Docker and The Docker Utility Engine for NVIDIA GPUs](https://docs.nvidia.com/ai-enterprise/deployment-guide/dg-docker.html).
+
+
+## General
 The following parameters have to be used at the docker run:
 - `--env=DISPLAY`: Exports DISPLAY env variable for X server
 - `--env=QT_X11_NO_MITSHM=1`: Prevents QT-based applications from using X’s shared memory, which Docker isolation blocks.
 - `--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw`: Mounts the X11 socket
 
+**Note:** Running `xhost +local:docker` on the Host OS allows docker to access X server.
+
+_Optional_ parameters:
+- `--volume=${env:HOME}/.gitconfig:/etc/gitconfig`: Share Git config
+- `--gpus all`: Share the GPUs with docker. Should be used only if you plan to use the GPU dedicated docker image.
 ---
 
 ## 0. Please Read Source Code for More Details

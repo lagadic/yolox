@@ -9,11 +9,6 @@ RUN apt update && apt install --no-install-recommends -y python3-pip &&\
     apt-mirror-updater -a -q &&\
     rm -rf /var/lib/apt/lists/*
 
-# Install essentials
-RUN apt-mirror-updater -a -q &&\
-    apt install -y build-essential &&\
-    rm -rf /var/lib/apt/lists/*
-
 # OpenCV
 RUN apt-mirror-updater -a -q &&\
     apt install --no-install-recommends -y python3-opencv &&\
