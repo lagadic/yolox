@@ -8,7 +8,6 @@ set( PYTHON_VERSION ${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} )
 
 # Boost
 find_package(Boost COMPONENTS
-  thread
   python${PYTHON_VERSION}
   numpy${PYTHON_VERSION}
 )
@@ -20,6 +19,9 @@ if( NOT Boost_FOUND )
     numpy${PYTHON_VERSION_MAJOR}
   )
 endif()
+
+# OpenCV
+find_package(OpenCV REQUIRED )
 
 # CXX_STANDARD
 set(CMAKE_CXX_STANDARD 17)
@@ -50,7 +52,7 @@ set(srcs_lib
 )
 
 add_library(${PROJECT_LIBRARIES} ${srcs_lib})
-target_link_libraries(${PROJECT_LIBRARIES} ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
+target_link_libraries(${PROJECT_LIBRARIES} ${Boost_LIBRARIES} ${PYTHON_LIBRARIES} ${OpenCV_LIBS})
 include_directories(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
 
 ########################################
