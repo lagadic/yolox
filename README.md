@@ -262,3 +262,19 @@ Standard Method Package includes Flip left and right,  Crop and Zoom(jitter=0.3)
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
 | ✔    | ✔    |      | ✔    |      | CIoU | 40.6 | 72.2  | 40.3  |
 | ✔    | ✔    |      | ✔    | ✔    | CIoU |      |       |       |
+
+# How to use a python-based inference on a C++ environnement
+
+[`./tutorials/cpp_integration`](./tutorials/cpp_integration/tutorial_cpp_integration.cpp) is a mini python/c++ project which used a tf/keras trained model in a C++ environnement. Here, we use data from the [hole detector example](./example/hole_detector).
+
+Build and run:
+```shell
+cd tutorials/
+mkdir -p cpp_integration_build/ && cd cpp_integration_build/
+cmake -G Ninja ../cpp_integration/
+ninja && ./tutorial_cpp_integration --model ../../example/hole_detector/models/tiny_yolox --img ../../example/hole_detector/data/Images/frame0000.jpg
+```
+
+![](./misc/infer_from_cpp.png)
+
+The first number represents the class id and the second number ([%]) represents the detection score.
