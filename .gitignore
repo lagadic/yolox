@@ -148,7 +148,5 @@ ckpts/
 test*.py
 *.txt
 
-
-
-
-
+# cpp_integration tutorial build
+tutorials/cpp_integration_build
