@@ -8,10 +8,22 @@
 int
 main( int argc, char **argv )
 {
-  const auto model_path     = std::string( "/root/deep-learning-ws/yolox/example/hole_detector/models/tiny_yolox" );
+  std::string model_path{ "" }, img_path{ "" };
+  for ( auto i = 1; i < argc; i++ )
+  {
+    if ( std::string( argv[i] ) == "--model" )
+    {
+      model_path = std::string( argv[++i] );
+    }
+    else if ( std::string( argv[i] ) == "--img" )
+    {
+      img_path = std::string( argv[++i] );
+    }
+  }
+
   const auto hole_localizer = std::make_unique< detector::DnnHoleLocalizer >( model_path );
 
-  auto cv_color = cv::imread( "/root/deep-learning-ws/yolox/example/hole_detector/data/Images/frame0000.jpg" );
+  auto cv_color = cv::imread( img_path );
 
   const auto detections = hole_localizer->detect( cv_color );
   std::for_each( begin( detections ), end( detections ),
