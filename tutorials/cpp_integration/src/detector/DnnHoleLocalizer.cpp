@@ -88,8 +88,15 @@ DnnHoleLocalizer::DnnHoleLocalizer( const std::string &model_path, int net_size,
   , m_localizer_impl{ std::make_shared< LocalizerImpl >() }
 {
   // Add python inria module path to PYTHONPATH env
-  std::string python_path = getenv( "PYTHONPATH" );
-  python_path += ":/tmp/python";
+  std::string python_path{""};
+  if(const auto original_python_path = getenv( "PYTHONPATH" ))
+  {
+    python_path = std::string(original_python_path) + ":/tmp/python";
+  }
+  else
+  {
+    python_path="/tmp/python";
+  }
   setenv( "PYTHONPATH", python_path.c_str(), 1 );
 
   // Init python module
