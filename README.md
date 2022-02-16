@@ -14,7 +14,7 @@ YOLOv3, YOLOv3-tiny, YOLOv4, YOLOv4-tiny
 
 The [Dockerfile](./docker_images/Dockerfile) embeds every requirement of this project.
 
-The following parameters have to be used at docker image run:
+The following parameters have to be used at the docker run:
 - `--env=DISPLAY`: Exports DISPLAY env variable for X server
 - `--env=QT_X11_NO_MITSHM=1`: Prevents QT-based applications from using X’s shared memory, which Docker isolation blocks.
 - `--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw`: Mounts the X11 socket
@@ -108,6 +108,10 @@ test:
   init_weight_path: "./example/hole_detector/models/tiny_yolox.h5"
 ```
 
+**Note1:** Loss types are described in [`iou.py`](./core/losses/iou.py).
+
+**Note2:** Other examples are available in [`cfgs`](./cfgs).
+
 ### 1.5 Inference
 
 #### A Simple Script for Images
@@ -149,7 +153,7 @@ The trained models and weights will be located at `yolox/ckpts`.
 python3 eval.py --config=example/hole_detector/cfgs/hole.yaml
 ```
 
-**Note:** In the configuration file (`.yaml` file), the weights and the annotation wich are evaluated are located in `test`:
+**Note:** In the configuration file (`.yaml` file), the weights and the annotation wich are evaluated here are located in `test`:
 
 ```yaml
 test:
