@@ -1,0 +1,8 @@
+/root/deep-learning-ws/yolox/example/hole_detector/data/Images/frame0007.jpg 179,114,193,129,0 349,244,362,255,0 449,146,463,159,0 477,341,489,351,0 577,418,589,426,0 578,267,591,278,0 
+/root/deep-learning-ws/yolox/example/hole_detector/data/Images/frame0008.jpg 70,86,80,96,0 122,243,131,252,0 339,155,349,164,0 429,231,439,240,0 495,173,505,182,0 438,46,451,57,0 570,247,580,255,0 506,296,515,303,0 570,349,579,358,0 557,415,566,424,0 
+/root/deep-learning-ws/yolox/example/hole_detector/data/Images/frame0001.jpg 50,174,64,187,0 349,244,362,255,0 393,378,405,388,0 510,89,524,104,0 
+/root/deep-learning-ws/yolox/example/hole_detector/data/Images/frame0005.jpg 230,64,241,75,0 340,156,350,165,0 404,85,415,96,0 431,231,440,240,0 432,320,441,328,0 578,416,585,422,0 573,350,581,357,0 607,219,617,228,0 
+/root/deep-learning-ws/yolox/example/hole_detector/data/Images/frame0003.jpg 220,56,231,67,0 332,149,342,159,0 345,256,354,265,0 525,134,536,144,0 602,214,613,223,0 502,291,512,299,0 515,369,523,376,0 601,466,610,475,0 
+/root/deep-learning-ws/yolox/example/hole_detector/data/Images/frame0004.jpg 201,95,214,108,0 350,212,362,223,0 605,194,618,205,0 559,377,570,385,0 566,460,577,469,0 
+/root/deep-learning-ws/yolox/example/hole_detector/data/Images/frame0002.jpg 94,140,106,152,0 345,202,356,212,0 384,326,394,333,0 523,465,534,475,0 586,186,598,198,0 476,67,489,80,0 
+/root/deep-learning-ws/yolox/example/hole_detector/data/Images/frame0000.jpg 143,104,153,114,0 339,155,349,165,0 440,47,450,57,0 530,141,541,152,0 492,390,502,400,0 
