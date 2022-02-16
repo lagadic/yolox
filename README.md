@@ -154,8 +154,10 @@ python3 train.py --config=example/hole_detector/cfgs/hole.yaml
 ```
 
 The trained models and weights will be located at `yolox/ckpts`.
-- `mAP-0.XXXX` files represent the full model in Keras format. Those models can be used with `simple_detector.py`.
-- `mAP-0.XXXX.h5` files contain only the weight.
+- `mAP-0.XXXX` files represent the **full model** in Keras format. Those models can be used with `simple_detector.py`.
+- `mAP-0.XXXX.h5` files contain **only** the **weights**.
+
+**Note:** The trained model can be converted into a **frozen graph** or a **ONNX** model thanks to [`model_converter.py`](./tools/model/model_converter.py). For further detail, please use `python3 model_converter.py --help`.
 
 ---
 
