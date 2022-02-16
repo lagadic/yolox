@@ -27,11 +27,11 @@ RUN mkdir -p /tmp/opencv &&\
     -DBUILD_TESTS=Off \
     -DBUILD_EXAMPLES=Off \
     -DBUILD_opencv_apps=Off \
-    -DBUILD_opencv_calib3d=On \
+    -DBUILD_opencv_calib3d=Off \
     -DBUILD_opencv_core=On \
     -DBUILD_opencv_dnn=Off \
-    -DBUILD_opencv_features2d=On \
-    -DBUILD_opencv_flann=On \
+    -DBUILD_opencv_features2d=Off \
+    -DBUILD_opencv_flann=Off \
     -DBUILD_opencv_highgui=On \
     -DBUILD_opencv_imgcodecs=On \
     -DBUILD_opencv_imgproc=On \
