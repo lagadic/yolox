@@ -35,7 +35,7 @@ def main(_argv):
         bboxes[:, [1, 3]] = bboxes[:, [1, 3]] * scale + dh
         bboxes[:, [0, 2]] = np.clip(bboxes[:, [0, 2]], 0, FLAGS.image_size - 1)
         bboxes[:, [1, 3]] = np.clip(bboxes[:, [1, 3]], 0, FLAGS.image_size - 1)
-        bboxes = bboxes.astype(np.int)
+        bboxes = bboxes.astype(np.int32)
         return bboxes
 
     bboxes = [resize_bboxes(ann[0], ann[1]) for ann in anns]
@@ -73,7 +73,8 @@ def main(_argv):
         if (assign == _assign).all():
             break  # clusters won't change
         for k in range(FLAGS.K):
-            clusters[k] = np.median(bboxes[_assign == k], axis=0)
+            if bboxes[_assign == k].size != 0:
+                clusters[k] = np.median(bboxes[_assign == k], axis=0)
 
         assign = _assign
 
