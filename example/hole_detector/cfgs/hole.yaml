@@ -1,22 +1,22 @@
 yolo:
   type: "yolox"
   iou_threshold: 0.5
-  score_threshold: 0.45
-  max_boxes: 100
+  score_threshold: 0.45 # score final = Probabilité de classe x prob d'objet (pour Yolo)
+  max_boxes: 100 # max de trous détectés par image avec faux positifs
   strides: "32,16"
   anchors: "5,4 5,5 6,6 7,5 7,7 9,8"
   mask: "3,4,5 0,1,2"
-  name_path: "./example/hole_detector/data/hole.names"
+  name_path: "../../dataset/hole.names"
 
 train:
   label: "hole_detector"
-  anno_path: "./example/hole_detector/data/train.txt"
-  image_size: "224,256,288,320,352,384,416"
+  anno_path: "../../dataset/train.txt"
+  image_size: "224,256,288,320,352,384,416" # Plusieurs tailles pour généraliser le réseau même si nnos images font 640. Il faut 32 entre chaque taille pour Yolo
 
-  train_times: 20
+  train_times: 3 # for large dataset (nb images x n = 1000)
 
-  batch_size: 4
-  init_weight_path: "./example/hole_detector/models/tiny_yolox.h5"
+  batch_size: 4 # nbr d'images envoyés en même tps sur la carte graphique. Sur GPU mettre 10. Attention risque d'overflow memory
+  init_weight_path: "../../dataset/models/tiny_yolox.h5" # On réentraine à partir de ce fichier. Sinon voir https://github.com/AlexeyAB/darknet/releases/yolov4-tiny.weights ou sinon from scratch en mettant ""
   #init_weight_path: "" # From scratch
   save_weight_path: "./ckpts"
 
@@ -26,10 +26,12 @@ train:
   label_smoothing: false
   normal_method: true
 
-  ignore_threshold: 0.5
+  ignore_threshold: 0.5 # pour le calcul de la loss si intersection < à ce seuil on vire la détection. Si pas besoin de beaucoup de précision on peut mettre 0.3
 
 test:
-  anno_path: "./example/hole_detector/data/valid.txt"
+  anno_path: "../../dataset/valid.txt"
   image_size: "416"
   batch_size: 1
-  init_weight_path: "./example/hole_detector/models/tiny_yolox.h5"
+  init_weight_path: "../../dataset/models/tiny_yolox.h5"
+  #init_weight_path: "./ckpts/tmp/hole_detector/202203101045/mAP-0.4436.h5" # Pour reprendre a partir d'un apprenttisage existant
+  
