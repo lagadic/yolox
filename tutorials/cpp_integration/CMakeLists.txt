@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.16.3)
 project(cpp_integration)
 
+# By default set release configuration
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel." FORCE)
+endif()
+
 # Python
 find_package( PythonLibs   3 )
 find_package( Python3 REQUIRED COMPONENTS Interpreter Development )
