@@ -151,3 +151,4 @@ test*.py
 tutorials/cpp_integration_build
 
 data.pkl
+*build*
