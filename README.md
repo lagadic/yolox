@@ -167,7 +167,7 @@ The trained models and weights will be located at `yolox/ckpts`.
 python3 eval.py --config=example/hole_detector/cfgs/hole.yaml
 ```
 
-**Note:** In the configuration file (`.yaml` file), the weights and the annotation wich are evaluated here are located in `test`:
+**Note:** In the configuration file (`.yaml` file), the weights and the annotation which are evaluated here are located in `test`:
 
 ```yaml
 test:
