@@ -20,7 +20,7 @@ train:
   #init_weight_path: "" # From scratch
   save_weight_path: "./ckpts"
 
-  loss_type: "CIoU+FL"
+  loss_type: "CIoU+FL" # Loss type are defined in iou.py
 
   mosaic: true
   label_smoothing: false
@@ -34,4 +34,3 @@ test:
   batch_size: 1
   init_weight_path: "../../dataset/models/tiny_yolox.h5"
   #init_weight_path: "./ckpts/tmp/hole_detector/202203101045/mAP-0.4436.h5" # Pour reprendre a partir d'un apprenttisage existant
-  
