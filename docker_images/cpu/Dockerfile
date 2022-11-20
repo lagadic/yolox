@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install a tool to find a fast, up-to-date Ubuntu Archive Mirror.
 RUN apt update && apt install --no-install-recommends -y python3-pip &&\
     pip3 install -U pip &&\
-    pip3 install apt-mirror-updater &&\
+    pip3 install apt-mirror-updater packaging &&\
     apt-mirror-updater -a -q &&\
     rm -rf /var/lib/apt/lists/*
 
